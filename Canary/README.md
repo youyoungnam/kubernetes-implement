@@ -76,7 +76,8 @@ spec:
 ```
 while true; do curl http://127.0.0.1:31532/name; echo; sleep 1; done
 ```
-테스트 부분
+
+![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/ba32e4a8-28c2-4868-b3b0-cb926052574e)
 
 
 

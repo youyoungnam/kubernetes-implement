@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-web-safe
+spec:
+  selector:
+    matchLabels:
+      app: python-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: python-service
+        version: safe
+    spec:
+      containers:
+        - name: python-service
+          image: dbdudska113/flask_y:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-web-risk
+spec:
+  selector:
+    matchLabels:
+      app: python-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: python-service
+        version: risk
+    spec:
+      containers:
+        - name: vue-service
+          image: dbdudska113/flask_y:v3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

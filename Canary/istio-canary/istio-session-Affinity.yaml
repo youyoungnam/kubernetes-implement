@@ -1,0 +1,18 @@
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: python-service-service-destination
+  namespace: default
+spec:
+  host: python-service # Service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        useSourceIp: true
+  subsets:
+    - labels:  # Selector
+        version: safe # 파드의 label "safe"
+      name: safe
+    - labels:
+        version: risky # 파드의 label "risky"
+      name: risky

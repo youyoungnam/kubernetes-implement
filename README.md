@@ -12,4 +12,5 @@
 
 ## istio-Gateway
 - [istio-Gateway](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/Istio-gateway)
--
+- [istio-prefix](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-prifx)
+- [istio-subdomain-routing](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-subdomain-routing)

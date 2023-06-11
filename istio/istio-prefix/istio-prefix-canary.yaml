@@ -1,0 +1,41 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: a-set-of-routing-rules-virtual-service # Virtual Service 이름을 작성한다.
+  namespace: default
+spec:
+  hosts:
+    - python-service.default.svc.cluster.local #Service DNS 작성해야 한다.
+    - "youngnam.com" # gateway DNS를 여기에 copy해서 넣어야한다.
+  gateways:
+    - ingress-gateway-configuration
+  http:
+    - match:
+        - uri: # 만약에 prefix가 name이면 risky버전으로
+            prefix: "/name"
+    - route: # 그리고 조건이 충족 된다면
+        - destination:
+          host: python-service.default.svc.cluster.local
+          subset: risky
+    - match:
+        - uri: # 만약에 prefix가 "/"이면 safe버전으로
+            prefix: "/"
+    - route: # 그리고 조건이 충족 된다면
+        - destination:
+            host: python-service.default.svc.cluster.local
+            subset: safe
+---
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: python-service-service-destination
+  namespace: default
+spec:
+  host: python-service # Service
+  subsets:
+    - labels:  # Selector
+        version: safe # 파드의 label "safe"
+      name: safe
+    - labels:
+        version: risky # 파드의 label "risky"
+      name: risky

@@ -11,4 +11,5 @@
 
 
 ## istio-Gateway
-- [istio-Gateway](https://github.com/youyoungnam/kubernetes-implement/tree/main/Istio-gateway)
+- [istio-Gateway](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/Istio-gateway)
+-

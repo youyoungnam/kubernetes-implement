@@ -2,7 +2,6 @@
 
 ## 쿠버네티스가 필요한이유
 - [Kubernetes](https://github.com/youyoungnam/kubernetes-implement/tree/main/k8s-preparation)
-  - 정리하면서 제 생각도 한번 작성해봤습니다...
 
 
 ## Canary
@@ -15,6 +14,8 @@
 - [istio-prefix](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-prifx)
 - [istio-subdomain-routing](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-subdomain-routing)
 
+## istio-Circuit Breaking
+- [istio-Circuit Breaking](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-Circuit-Breaking)
 
 ## Kubernetes-resource
 - [service](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/service)

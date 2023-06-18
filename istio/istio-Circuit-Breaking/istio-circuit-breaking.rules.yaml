@@ -1,0 +1,13 @@
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: python-service-service-destination
+  namespace: default
+spec:
+  host: python-service.default.svc.cluster.local
+  trafficPolicy:
+    outlierDetection:
+      maxEjectionPercent: 100
+      consecutiveErrors: 2
+      interval: 10s
+      baseEjectionTime: 30s

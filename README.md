@@ -20,6 +20,9 @@
 ## istio-mTLS
 - [istio-mTLS](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio-mtls)
 
+## istio- Virtual Service
+- [istio-virtualService](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-virtualService)
+
 ## Kubernetes-resource
 - [namespace](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/namespace)
 - [service](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/service)

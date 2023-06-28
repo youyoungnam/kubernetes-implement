@@ -1,0 +1,15 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: a-set-of-routing-rules-virtual-service # Virtual Service 이름을 작성한다.
+  namespace: default
+spec:
+  hosts:
+    - python-service.default.svc.cluster.local #Service DNS 작성해야 한다.
+  http:
+    - match:
+        - uri: # 만약에 prefix가 name이면 python-service로
+            prefix: "/name"
+    - route: # 그리고 조건이 충족 된다면
+        - destination:
+          host: python-service.default.svc.cluster.local

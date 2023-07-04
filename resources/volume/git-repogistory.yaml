@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: html
+            readOnly: true
+        ports:
+        - containerPort: 8080
+      volumes:
+       - name: hmtml
+         gitRepo:
+           repository: https://github.com
+           revision: master
+           directory: .

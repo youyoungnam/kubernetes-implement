@@ -29,4 +29,6 @@ emptyDir은 파드를 호스팅하는 워커 노드의 실제 디스크에 생�
 
 hostpath 볼륨은 노드 파일시스템의 특정 파일이나 디렉토리를 가리킨다. 동일 노드에 실행 중인 파드가 hostpath 볼륨의 동일 경로를 사용 중이면 동일한 파일이 표시된다.
 hostpath 볼륨의 콘텐츠는 파드가 죽으면 삭제되는 반면 hostpath 볼륨의 콘텐츠는 삭제되지 않는다. 즉, 파드가 삭제되면 다음 파드가 호스트의 동일 경로를 가리키는 hostpath 볼륨을 사용하고 이전 파드와 동일한 노드에 스케줄링된다는 조건에서 새로운 파드는 이전 파드가 남긴 모든 항목을 볼 수 있다.
-![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/067f48fc-2008-4dff-bf92-3fd7353e8353)
+
+
+![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/067f48fc-2008-4dff-bf92-3fd7353e8353){: .center}

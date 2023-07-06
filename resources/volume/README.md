@@ -32,3 +32,14 @@ hostpath 볼륨의 콘텐츠는 파드가 죽으면 삭제되는 반면 hostpath
 
 
 ![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/067f48fc-2008-4dff-bf92-3fd7353e8353)
+
+
+팁) 노드의 시스템 파일에 읽기/쓰기를 하는 경우에만 hostPath 볼륨을 사용한다는 것을 기억해야 한다. 여러 파드에 걸쳐 데이터를 유지하기 위해서는 절대 사용하지 말아야 한다. 
+
+
+
+퍼시스턴트 스토리지 사용은 파드에서 실행중인 애플리케이션이 디스크에 데이터를 유지해야 하고 파드가 다른 노드로 재 스케줄링된 경우에도 동일한 데이터를 사용해야 한다면 위에서말한 볼륨은 사용하면 안된다. 
+이러한 데이터는 어떤 노드에서도 접근이 가능해야한다. 즉 몽고디비같은 영구 데이터를 허용하는 볼륨을 사용
+
+![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/8a82eca9-8fb5-43e9-a980-93215dbf21c3)
+

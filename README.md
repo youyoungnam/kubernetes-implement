@@ -28,3 +28,8 @@
 - [service](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/service)
 - [pod](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/pod)
 - [configmap](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/configmap)
+
+
+## ETC
+- [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)
+  - docker and kubernetes 팁 등등 configmap volume mounts

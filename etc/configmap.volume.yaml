@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: appname
+  labels:
+    name: appname
+spec:
+  containers:
+  - name: appname
+    image: gcr.io/google-containers/busybox
+    ports:
+      - containerPort: 8080
+    volumeMounts:
+      - name: config
+        mountPath: /etc/nginx/conf.d
+        readOnly: true
+  volumes:
+    - name: config
+      configMap:
+        name: ex-config

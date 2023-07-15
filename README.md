@@ -33,3 +33,6 @@
 ## ETC
 - [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)
   - docker and kubernetes 팁 등등 configmap volume mounts
+
+## Solving Problems Experiment
+- [experiment](https://github.com/youyoungnam/kubernetes-implement/tree/main/experiment)

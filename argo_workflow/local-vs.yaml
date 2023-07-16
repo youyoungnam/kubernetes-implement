@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: local-vs
+  namespace: istio-system
+spec:
+  gateways:
+    - local-gateway
+  hosts:
+    - "*"
+  tcp:
+    - match:
+        - port: 2746
+      route:
+        - destination:
+            host: argo-server.argo.svc.cluster.local
+            port:
+              number: 2746

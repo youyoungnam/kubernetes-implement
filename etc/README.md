@@ -162,3 +162,107 @@ spec:
             fieldPath: spec.serviceAccountName
 ```
 파드가 실행되면 파드 스펙에 정의한 모든 환경변수를 조회할 수 있다.
+
+
+## 쿠버네티스 API 서버와 통신하기 
+- Download API는 단지 파드 자체의 메타데이터와 모든 파드의 데이터 중 일부만 노출한다. 떄로는 애플리케이션에서 클러스터에 정의된 다른 파드나 리소스에 관한 더 많은 정보가 필요할 수도 있다. 이경우는 download api는 도움되지 않는다.
+
+
+## 쿠버네티스 API
+- kubectl cluster-info를 통해 api서버 주소를 알아낼 수 있다.
+```agsl
+kubectl cluster-info
+```
+사실 서버는 HTTPS를 사용중이라 인증이 필요하기 때문에 직접 통신하는 것은 간단하지않다. curl를 통해 접근하고 -k옵션을 사용해서 서버 인증서 확인을 건너뛰도록 할 수 있지만 원하는 결과는 얻을 수 없다. 
+
+
+```agsl
+curl https://192.168.99.100:8443 -k
+```
+
+## kubectl proxy를 통해서 API 서버 액세스하는 법
+kubectl proxy명령어를 통해 로컬 컴퓨터에서 HTTP 연결을 수신하고 이 연결을 인증을 관리하면서 api 서버로 전달하기 때문에 요청할 때마다 인증 토큰을 전달할 필요는 없다.
+
+```agsl
+kubectl proxy
+starting to serve on 127.0.0.1:8001
+
+ curl localhost:8001
+{
+  "paths": [
+    "/.well-known/openid-configuration",
+    "/api",
+    "/api/v1",
+    "/apis",
+    "/apis/",
+    "/apis/admissionregistration.k8s.io",
+    "/apis/admissionregistration.k8s.io/v1",
+    "/apis/apiextensions.k8s.io",
+    "/apis/apiextensions.k8s.io/v1",
+    "/apis/apiregistration.k8s.io",
+    "/apis/apiregistration.k8s.io/v1",
+    "/apis/apps",
+    ....
+  ]
+}%
+```
+
+## 파드 내에서 API 서버와 통신하기
+kubectl proxy를 사용해서 로컬 컴퓨터에서 api 서버와 통신하는 방법을 알았는데 그렇다면 kubectl이 없는 pod내에서는 어떤식으로 해야할까? 파드 내에서 api 서버와 통신하는 방법은 3가지를 먼저 처리해야한다
+ - api 서버 위치알기
+ - api 서버와 통신하고 있는지 확인
+ - api 서버로 인증해야한다.
+
+
+curl을 사용할 수 있는 환경이여야 하기 때문에 바이너리가 포함된 컨테이너 이미지를 사용하자. 도커 허브에서 tutum/curl 이미지를 사용하자 
+
+```agsl
+apiVersion: v1
+kind: Pod
+metadata:
+  name: appname
+  labels:
+    name: appname
+spec:
+  containers:
+  - name: appname
+    image: tutum/curl
+    command: ["sleep", "999999"] # container가 계속 실행되도록 하려고 지연시간이 길게 sleep할 수 있게 만들어야 한다.
+```
+
+파드를 만든 후 kubectl exec를 실행하여 컨테이너 내부에서 bash shell을 실행해보자 
+```agsl
+kubectl exec -it curl bash
+```
+api 서버의 ip주소와 포트를 컨테이너 내부의 kubernetes_service_host, kubernetes_service_port변수를 얻을 수 있는지 확인
+
+```agsl
+env | grep KUBERNETES_SERVICE
+```
+
+api서버는 https의 기본 포트인 443에서 수신 대기 중이므로 https로 접속할 수 있다. curl https://kubernetes 해당 주소롤 curl 사용한다면 인증하라는 메세지를 확인할 수 있다.
+이 문제를 간단히 해결하는 방법은 -k 옵션을 사용해서 접근하면 해결할 수 있다. 하지만, 실제 애플리케이션에서 사용할 때는 인증을 건너뛰면 안된다. 
+
+API 서버로 인증
+```agsl
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes
+```
+
+파드가 실행중인 네임스페이스 얻기
+
+```agsl
+NS=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+
+curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespace/$NS/pods
+```
+같은 방식으로 다른 API 오브젝트를 검색하고 간단한 GET요청 대신 PATCH를 전송해 업데이트할 수 있다. 
+
+
+
+## 정리 
+- Application은 API 서버의 인증서가 인증 기관으로부터 서명됐는지 검증해야 한다. 인증 기관의 인증서는 ca.cart파일에 있다.
+- 애플리케이션은 token 파일의 내용을 Authorization HTTP 헤더에 Bearer 토큰으로 넣어 전송해서 자신을 인증해야 한다.
+
+  ![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/0d1747fb-1818-415a-87eb-b42e8119e216)

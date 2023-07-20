@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: appname
+  labels:
+    name: appname
+spec:
+  containers:
+  - name: appname
+    image: tutum/curl
+  - name: ambassador
+    image: luksa/kubectl-proxy:1.6.2

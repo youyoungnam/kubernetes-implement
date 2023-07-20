@@ -31,6 +31,7 @@
 - [namespace](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/namespace)
 - [service](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/service)
 - [pod](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/pod)
+- [deployment](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/deployment)
 - [configmap](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/configmap)
 
 

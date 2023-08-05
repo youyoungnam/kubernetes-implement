@@ -35,7 +35,7 @@
 - [configmap](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/configmap)
 
 
-## Solving Problems Experience
+## Troubleshooting Experience
 - [Problems](https://github.com/youyoungnam/kubernetes-implement/tree/main/Problems)
 
 

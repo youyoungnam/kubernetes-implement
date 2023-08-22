@@ -8,3 +8,9 @@
 
 ## GCP L7 방화벽 이슈
 - [GCP-L7](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/GCP-L7(Load-Balancer))
+
+
+## Prometheus Kafka Exporter 연결 및 수집
+- [prometheus](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/prometheus)
+
+

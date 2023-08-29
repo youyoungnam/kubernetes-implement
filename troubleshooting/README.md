@@ -13,4 +13,7 @@
 ## Prometheus Kafka Exporter 연결 및 수집
 - [prometheus](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/prometheus)
 
+## Prometheus Kafka Exporter 연결 및 수집
+- [redis-sentinel](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/redis-sentinel)
+
 

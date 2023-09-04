@@ -16,4 +16,7 @@
 ## Redis Sentinel 구축
 - [redis-sentinel](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/redis-sentinel)
 
+## kiali 설치 
+- [Kiali](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Kiali)
+
 

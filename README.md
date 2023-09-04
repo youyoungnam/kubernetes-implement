@@ -41,6 +41,7 @@
 - [GCP-L7](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/GCP-L7(Load-Balancer))
 - [prometheus](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/prometheus)
 - [redis-sentinel](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/redis-sentinel)
+- [Kiali](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Kiali)
 
 ## ETC
 - [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)

@@ -1,6 +1,4 @@
 # Kubernetes make me interesting
-- [k8s for preperation](https://github.com/youyoungnam/kubernetes-implement/tree/main/k8s-preparation)
-## 쿠버네티스가 필요한이유
 - [Kubernetes](https://github.com/youyoungnam/kubernetes-implement/tree/main/k8s-preparation)
 
 

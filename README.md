@@ -40,6 +40,8 @@
 - [prometheus](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/prometheus)
 - [redis-sentinel](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/redis-sentinel)
 - [Kiali](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Kiali)
+- [docker(arm64, amd64)](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/amd64-arm64)
+
 
 ## ETC
 - [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)

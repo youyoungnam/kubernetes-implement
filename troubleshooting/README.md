@@ -19,4 +19,6 @@
 ## kiali 설치 
 - [Kiali](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Kiali)
 
+## docker(arm64, amd64) 이슈
+- [docker(arm64, amd64)](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/amd64-arm64)
 

@@ -41,6 +41,7 @@
 - [redis-sentinel](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/redis-sentinel)
 - [Kiali](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Kiali)
 - [docker(arm64, amd64)](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/amd64-arm64)
+- [Ingress](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Ingress)
 
 
 ## ETC

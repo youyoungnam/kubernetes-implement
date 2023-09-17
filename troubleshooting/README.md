@@ -22,3 +22,7 @@
 ## docker(arm64, amd64) 이슈
 - [docker(arm64, amd64)](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/amd64-arm64)
 
+
+## Nginx Ingress Controller Istio 연결 이슈 
+- [Ingress](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Ingress)
+

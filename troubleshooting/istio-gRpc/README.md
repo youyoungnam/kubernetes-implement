@@ -5,6 +5,8 @@
 - 문제는 이 gateway뒤에 다른 제품 Spring Gateway를 통과하고 backend Application으로 가는 통신이 있다는 것이다
 
 ![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/85b43b23-63f8-4135-9f4d-557bc0237aa2)
+
+
 그림을 간단하게 그려보면 이렇게 flow가 흘러 간다는 것이다. 궁금한 점은  이렇게도 gRpc통신이 가능한것인가? spring Gateway가 gRpc를 통신할 수 있는것인가? 다양하게 궁금했다. 
 
 일단 개발환경 클러스터에 gRpc관련 Application올리고 테스트를 해봤더니 역시나 통신이 끊겨버렸다. 여기서 가장 먼저 든 생각은 Spring Gateway가 양방향 통신을 할 수 있게 잡아 주지 않을것이다.

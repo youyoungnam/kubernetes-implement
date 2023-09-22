@@ -42,7 +42,7 @@
 - [Kiali](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Kiali)
 - [docker(arm64, amd64)](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/amd64-arm64)
 - [Ingress](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Ingress)
-
+- [istio-gRpc](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/istio-gRpc)
 
 ## ETC
 - [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)

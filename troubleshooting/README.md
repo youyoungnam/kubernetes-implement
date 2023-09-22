@@ -26,3 +26,5 @@
 ## Nginx Ingress Controller Istio 연결 이슈 
 - [Ingress](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Ingress)
 
+## istio에서 gRpc 통신 이슈
+- [istio-gRpc](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/istio-gRpc)

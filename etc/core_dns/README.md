@@ -4,10 +4,12 @@
 - 파드 내부에 접속해서 etc/resolv.conf파일을 확인하면 nameserver에 kube-dns로 바라보고 있는걸 확인할 수 있다.
 
 kubedns cluster ip
+
 ![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/34e54dbf-b124-4129-bf48-6512e37174c4)
 
 
 파드 내부 nameserver
+
 ![image](https://github.com/youyoungnam/kubernetes-implement/assets/60678531/652b5fa1-8298-434c-a000-0f0302646f65)
 
 ## 이게 무슨말일까? 

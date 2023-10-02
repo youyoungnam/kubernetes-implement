@@ -28,3 +28,6 @@
 
 ## istio에서 gRpc 통신 이슈
 - [istio-gRpc](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/istio-gRpc)
+
+## kubernetes Resource Report SA 설정 이슈로 인한 Error 해결
+- [kubernetes-resource-report](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/kubernetes-resource-report)

@@ -44,7 +44,7 @@
 - [Ingress](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/Ingress)
 - [istio-gRpc](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/istio-gRpc)
 - [kubernetes-resource-report](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/kubernetes-resource-report)
-
+- [istio-install](https://github.com/youyoungnam/kubernetes-implement/tree/main/troubleshooting/istio-install)
 
 ## ETC
 - [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)

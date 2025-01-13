@@ -24,6 +24,9 @@
 ## istio- Virtual Service
 - [istio-virtualService](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-virtualService)
 
+## istio- istio DNS cache
+- [istio DNS cache](https://github.com/youyoungnam/kubernetes-implement/tree/main/istio/istio-coredns)
+
 
 ## Kubernetes-resource
 - [namespace](https://github.com/youyoungnam/kubernetes-implement/tree/main/resources/namespace)

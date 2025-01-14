@@ -32,7 +32,7 @@
 
 ### Istio가 어떻게 CoreDNS 부하를 감소시킬 수 있을까요?
 
-![img_1.png](img_1.png)[참고]https://istio.io/latest/blog/2020/dns-proxy/#automatic-vip-allocation-where-possible
+![img_1.png](img_1.png)https://istio.io/latest/blog/2020/dns-proxy/#automatic-vip-allocation-where-possible
 
 - Istio는 기존에 많이 알려진것처럼, Service Mesh입니다. 그렇다면, Service Mesh는 무엇일까요? Service Mesh는 공식문서를 보면 가시성과 트래픽관리 그리고 보안을 담당하고 있는 인프라스트럭쳐 계층이라고 설명되어 있습니다. 
 - Istio하면 따라다니는게 있는데 그건 바로 Envoy입니다.  istio sidecar인 **Envoy**가 CoreDNS 부하를 감소 시킬 수 있습니다.

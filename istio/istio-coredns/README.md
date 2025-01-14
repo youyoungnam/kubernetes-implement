@@ -1,7 +1,7 @@
 # Istio DNS Proxy Cache Core DNS 개선하기 
 
 
-## 소개
+
 ### Kubernetes의 CoreDNS의 역할
 - CoreDNS는 경량화된 설계로 클라우드 네이티브 환경에 최적화되어 있습니다.
 - 플러그인 기반으로 다양한 기능을 추가할 수 있어 고도로 확장 가능합니다.

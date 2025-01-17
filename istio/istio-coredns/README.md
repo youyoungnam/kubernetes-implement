@@ -37,15 +37,72 @@
 - Istio는 기존에 많이 알려진것처럼, Service Mesh입니다. 그렇다면, Service Mesh는 무엇일까요? Service Mesh는 공식문서를 보면 가시성과 트래픽관리 그리고 보안을 담당하고 있는 인프라스트럭쳐 계층이라고 설명되어 있습니다. 
 - Istio하면 따라다니는게 있는데 그건 바로 Envoy입니다.  istio sidecar인 **Envoy**가 CoreDNS 부하를 감소 시킬 수 있습니다.
 - 짧게 설명해보자면, istio sidecar인 Envoy가 이미 Serive Discovery(FQDN)에 대한 servive-ip를 cache처럼 활용하는 것입니다.
-- 자세하게 이해하고 싶다면, istio 공식 문서를 참고하시면 됩니다.
+- 자세하게 이해하고 싶다면, istio 공식 문서를 해주세요.
 
 ### 어떻게 설정할 수 있나요? 
-현재 이기능은 기본적으로 istio를 설치를 진행하면 설정되지는 않습니다. 그래서 istio configmap를 추가 후 istiod pod를 재시작합니다.
+현재 해당기능은 기본적으로 istio를 설치를 진행하면 설정되지는 않습니다. 그래서 istio configmap를 추가 후 istiod pod를 재시작합니다.
 
 ![img_2.png](img_2.png)
 
 
+### Istio DNS Cache설정이 되어있는지 확인은 어떻게 할 수 있나요 ? 
+
+### ISTIO DNS Cache설정이 적용된 istio sidcar config 상태
+```shell
+ k exec -it -n cmp pod_name -c istio-proxy -- curl localhost:15000/config_dump | grep -i dns
+ 
+        "ISTIO_META_DNS_CAPTURE": "true",
+        "DNS_CAPTURE": "true",
+        "ISTIO_META_DNS_AUTO_ALLOCATE": "true"
+      "DNS_CAPTURE": "true",
+      "DNS_AUTO_ALLOCATE": "true",
+       "name": "envoy.matching.inputs.dns_san",
+        "envoy.extensions.matching.common_inputs.ssl.v3.DnsSanInput"
+       "name": "envoy.cluster.logical_dns",
+       "name": "envoy.cluster.strict_dns",
+       "name": "envoy.filters.udp.dns_filter",
+        "envoy.extensions.filters.udp.dns_filter.v3.DnsFilterConfig"
+       "name": "envoy.network.dns_resolver.cares",
+       "category": "envoy.network.dns_resolver",
+        "envoy.extensions.network.dns_resolver.cares.v3.CaresDnsResolverConfig"
+       "name": "envoy.matching.inputs.dns_san",
+        "envoy.extensions.matching.common_inputs.ssl.v3.DnsSanInput"
+      "name": "outbound|53||coredns.kube-system.svc.cluster.local",
+       "service_name": "outbound|53||coredns.kube-system.svc.cluster.local"
+           "name": "coredns",
+           "host": "coredns.kube-system.svc.cluster.local"
+```
+### ISTIO DNS Cache설정이 적용되지 않은 istio sidcar config 상태
+
+```shell
+k exec -it -n cmp pod name -c istio-proxy -- curl localhost:15000/config_dump | grep -i dns
 
 
+       "name": "envoy.matching.inputs.dns_san",
+        "envoy.extensions.matching.common_inputs.ssl.v3.DnsSanInput"
+       "name": "envoy.filters.udp.dns_filter",
+        "envoy.extensions.filters.udp.dns_filter.v3.DnsFilterConfig"
+       "name": "envoy.cluster.logical_dns",
+       "name": "envoy.cluster.strict_dns",
+       "name": "envoy.network.dns_resolver.cares",
+       "category": "envoy.network.dns_resolver",
+        "envoy.extensions.network.dns_resolver.cares.v3.CaresDnsResolverConfig"
+       "name": "envoy.matching.inputs.dns_san",
+        "envoy.extensions.matching.common_inputs.ssl.v3.DnsSanInput"
+```
+
+
+### Istio Cache가 적용되지 않았을 때 CoreDNS에 로그 확인
+
+![img_3.png](img_3.png)
+
+위 이미지에 보이는것처럼 파드 내부에서 다른 namespace에 있는 nginx pod에 요청을 할 때 coredns 로그에 dns 질의를 하는것을 볼 수 있습니다.
+
+
+### Istio Cache가 적용 되었을 때 CoreDNS 로그 확인
+
+![img_4.png](img_4.png)
+
+Istio Cache가 istiod에 적용된 뒤 위 방식처럼 다시 파드 내부에서 다른 파드에 요청했을 때 coredns에 들어오지 않는것을 확인할 수 있습니다. 
 
 

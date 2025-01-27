@@ -1,4 +1,8 @@
-# Kubernetes make me interesting
+Kubernetes make me interesting
+---
+
+![img.png](img.png)
+---
 - [Kubernetes](https://github.com/youyoungnam/kubernetes-implement/tree/main/k8s-preparation)
 
 

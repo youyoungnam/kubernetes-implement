@@ -103,7 +103,7 @@ k exec -it -n cmp pod name -c istio-proxy -- curl localhost:15000/config_dump | 
 위 이미지에 보이는것처럼 파드 내부에서 다른 namespace에 있는 nginx pod에 요청을 할 때 coredns 로그에 dns 질의를 하는것을 볼 수 있습니다.
 
 
-### Istio Cache 미적용 시 
+#### Istio Cache 미적용 시 
 
 ![img_4.png](img_4.png)
 

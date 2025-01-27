@@ -1,4 +1,4 @@
-# Istio DNS Proxy Cache Core DNS 개선하기 
+# Istio DNS Proxy Cache를 이용하여 Core DNS 개선하기 
 
 
 
@@ -37,7 +37,7 @@
 - Istio는 기존에 많이 알려진것처럼, Service Mesh입니다. 그렇다면, Service Mesh는 무엇일까요? Service Mesh는 공식문서를 보면 가시성과 트래픽관리 그리고 보안을 담당하고 있는 인프라스트럭쳐 계층이라고 설명되어 있습니다. 
 - Istio하면 따라다니는게 있는데 그건 바로 Envoy입니다.  istio sidecar인 **Envoy**가 CoreDNS 부하를 감소 시킬 수 있습니다.
 - 짧게 설명해보자면, istio sidecar인 Envoy가 이미 Serive Discovery(FQDN)에 대한 servive-ip를 cache처럼 활용하는 것입니다.
-- 자세하게 이해하고 싶다면, istio 공식 문서를 해주세요.
+
 
 ### 어떻게 설정할 수 있나요? 
 현재 해당기능은 기본적으로 istio를 설치를 진행하면 설정되지는 않습니다. 그래서 istio configmap를 추가 후 istiod pod를 재시작합니다.

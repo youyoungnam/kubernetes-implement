@@ -39,16 +39,19 @@
 - 짧게 설명해보자면, istio sidecar인 Envoy가 이미 Serive Discovery(FQDN)에 대한 servive-ip를 cache처럼 활용하는 것입니다.
 
 
-### 어떻게 설정할 수 있나요? 
-현재 해당기능은 기본적으로 istio를 설치를 진행하면 설정되지는 않습니다. 그래서 istio configmap를 추가 후 istiod pod를 재시작합니다.
+### Istio DNS Cache 설정 방법
+
+현재 해당기능은 기본적으로 istio를 설치를 진행하면 설정되지는 않습니다. 그래서 istio configmap를 수정 후 istiod pod를 재시작합니다.
 
 ![img_2.png](img_2.png)
 
 
-### Istio DNS Cache설정이 되어있는지 확인은 어떻게 할 수 있나요 ? 
+### Istio DNS Cache 활성화 확인 
 
-### ISTIO DNS Cache설정이 적용된 istio sidcar config 상태
+#### ISTIO DNS Cache설정이 적용된 istio sidcar config 상태
+Istio DNS Cache가 제대로 활성화되었는지 확인하려면 아래 명령어를 실행합니다
 ```shell
+#활성화된 경우 출력 예시:
  k exec -it -n cmp pod_name -c istio-proxy -- curl localhost:15000/config_dump | grep -i dns
  
         "ISTIO_META_DNS_CAPTURE": "true",
@@ -72,9 +75,10 @@
            "name": "coredns",
            "host": "coredns.kube-system.svc.cluster.local"
 ```
-### ISTIO DNS Cache설정이 적용되지 않은 istio sidcar config 상태
+#### ISTIO DNS Cache설정이 적용되지 않은 istio sidcar config 상태
 
 ```shell
+#비활성화된 경우 출력 예시
 k exec -it -n cmp pod name -c istio-proxy -- curl localhost:15000/config_dump | grep -i dns
 
 
@@ -90,19 +94,21 @@ k exec -it -n cmp pod name -c istio-proxy -- curl localhost:15000/config_dump | 
        "name": "envoy.matching.inputs.dns_san",
         "envoy.extensions.matching.common_inputs.ssl.v3.DnsSanInput"
 ```
+### CoreDNS 로그에서의 차이
 
-
-### Istio Cache가 적용되지 않았을 때 CoreDNS에 로그 확인
+#### Istio Cache 적용 시
 
 ![img_3.png](img_3.png)
 
 위 이미지에 보이는것처럼 파드 내부에서 다른 namespace에 있는 nginx pod에 요청을 할 때 coredns 로그에 dns 질의를 하는것을 볼 수 있습니다.
 
 
-### Istio Cache가 적용 되었을 때 CoreDNS 로그 확인
+### Istio Cache 미적용 시 
 
 ![img_4.png](img_4.png)
 
 Istio Cache가 istiod에 적용된 뒤 위 방식처럼 다시 파드 내부에서 다른 파드에 요청했을 때 coredns에 들어오지 않는것을 확인할 수 있습니다. 
 
 
+### 결론
+Istio의 DNS Proxy Cache는 CoreDNS의 부하를 줄이고, 서비스 디스커버리의 성능을 최적화하는 강력한 도구입니다.

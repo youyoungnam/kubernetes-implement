@@ -1,7 +1,7 @@
 Kubernetes make me interesting
 ---
 
-<img src="img.png" width="400" height="300"/>
+<img src="img.png" justify-content: center width="400" height="300"/>
 
 ---
 ## Kubernetes

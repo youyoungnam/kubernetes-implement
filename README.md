@@ -1,7 +1,8 @@
 Kubernetes make me interesting
 ---
 
-![img.png](img.png)
+<img src="img.png" width="400" height="300"/>
+
 ---
 ## Kubernetes
 - [Kubernetes](https://github.com/youyoungnam/kubernetes-implement/tree/main/k8s-preparation)

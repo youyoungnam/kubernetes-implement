@@ -23,6 +23,10 @@
 - HA 구성
   - ArgoCD가 관리하는 클러스터가 점차 많아질 수 록 ArgoCD의 Application Controller는 더 많은 cpu와 memory가 소비될 수 있습니다.특이점이 왔을 때 Replicas를 늘려 관리하는 클러스터를 나눠서 운영할 수 있게 해주는게 좋습니다.
   - 단순히 replicas만 늘린다고 해서 해결되지는 않고,  Kubernetes 클러스터의 서브셋을 담당하도록 구성해야 합니다. 해당값 조정은 ARGOCD_CONTROLLER_REPLICAS option을 조절하면 됩니다. 
+```shell
+         - name: ARGOCD_CONTROLLER_REPLICAS
+           value: "2"
+```
 
 
 
@@ -74,8 +78,10 @@ spec:
 
 만약 두 개의 애플리케이션(A, B)이 동기화될 때
 
-Git에서 A, B 둘 다 데이터를 가져와야 함 → reposerver.parallelism.limit 영향
-A, B의 Kubernetes 리소스를 kubectl로 적용해야 합니다 → reposerver.kubectl.parallelism.limit 영향을 줄 수 있습니다.
+Git에서 A, B 둘 다 데이터를 가져와야 합니다. → reposerver.parallelism.limit 영향
+
+A, B의 Kubernetes 리소스를 kubectl로 적용해야 합니다 → reposerver.kubectl.parallelism.limit 영향
+
 한 번에 **한 개의 Git 리포지토리(A 먼저, 끝나면 B)**만 처리합니다. 하지만, kubectl은 한 번에 7개까지 명령을 실행할 수 있으며, 따라서 배포 자체는 병렬로 빠르게 진행될 수 있습니다.
 
 

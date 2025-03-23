@@ -84,12 +84,8 @@ docker info | grep "Docker Root Dir"
 
 출력 예시:
 
-```bash
-bash
+![img.png](img.png)
 
-Docker Root Dir: /mnt/disk/data/docker
-
-```
 
 이제 `docker images` 명령어를 실행하면 새로운 경로에 저장된 이미지가 표시됩니다. 🚀
 

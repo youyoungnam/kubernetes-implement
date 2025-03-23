@@ -1,20 +1,19 @@
 # ArgoCD 운영 최적화
 
 
-최근에 운영중이던 클러스터가 자주 죽는 이슈가 발생했습니다. 이유를 확인해보니 ArgoCD 때문인것을 확인했습니다. 최적화를 진행하기전 초기에 ArgoCD를 배포했을때 구성으로 운영해왔습니다. 
+최근 운영 중인 클러스터에서 자주 장애가 발생하는 이슈가 있었습니다. 원인을 조사한 결과, ArgoCD가 주요 원인임을 확인했습니다. 초기에는 기본 구성으로 ArgoCD를 배포하고 운영해 왔지만, 시간이 지나면서 점점 늘어나는 클러스터와 Application 수로 인해 문제가 발생하기 시작했습니다.
 
-문제가 발생하기 시작했던 시점은, 점차늘어나는 클러스터, 점점 늘어나는 Application 수가 문제 였습니다. 단일 ArgoCD에는 10개이상의 클러스터가 연결되어 있는 상태였고, Application 갯수는 300+이였습니다.
+현재 단일 ArgoCD 인스턴스에 10개 이상의 클러스터가 연결되어 있으며, 관리하는 Application 수도 300개 이상으로 증가한 상태입니다.
 
 
 ## 발견된 문제점
-- 단일 Application-controller cpu, memory 스파크
-- CICD 진행했을 때 Argocd repo server cpu 스파크 
+- 단일 application-controller의 CPU 및 메모리 사용량 급증 (스파이크)
+- CICD 실행 시 argocd-repo-server의 CPU 사용량 급증
 
-
-## 적용해본 최적화 방식
-- pull 방식을 push 방식으로 변경
-- argocd-application HA 
-- Argocd repo server option 최적화 
+## 적용한 최적화 방식
+- Pull 방식에서 Push 방식으로 변경
+- application-controller HA 구성
+- argocd-repo-server 옵션 최적화
 
 
 

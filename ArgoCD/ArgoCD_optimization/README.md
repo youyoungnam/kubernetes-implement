@@ -1,14 +1,14 @@
 # ArgoCD 운영 최적화
 
 
-최근 운영 중인 클러스터에서 자주 장애가 발생하는 이슈가 있었습니다. 원인을 조사한 결과, ArgoCD가 주요 원인임을 확인했습니다. 초기에는 기본 구성으로 ArgoCD를 배포하고 운영해 왔지만, 시간이 지나면서 점점 늘어나는 클러스터와 Application 수로 인해 문제가 발생하기 시작했습니다.
+최근 운영 중인 클러스터에서 자주 장애가 발생하는 이슈가 있었습니다. 원인을 조사한 결과, ArgoCD가 주요 원인중 하나임을 확인했습니다. 초기에는 기본 구성으로 ArgoCD를 배포하고 운영해 왔지만, 시간이 지나면서 점점 늘어나는 클러스터와 Application 수로 인해 문제가 발생하기 시작했습니다.
 
 현재 단일 ArgoCD에 10개 이상의 클러스터가 연결되어 있으며, ArgoCD가 관리하는 Application 수도 300개 + 이상으로 증가한 상태입니다.
 
 
 ## 발견된 문제점
 - 단일 application-controller의 CPU 및 메모리 사용량 급증 (스파이크)
-- CICD 실행 시 argocd-repo-server의 CPU 사용량 급증
+- CICD 실행 시 argocd-application, argocd-repo-server의 CPU 사용량 급증
 
 ## 적용한 최적화 방식
 - Pull 방식에서 Push 방식으로 변경
@@ -84,9 +84,13 @@ A, B의 Kubernetes 리소스를 kubectl로 적용해야 합니다 → reposerver
 한 번에 **한 개의 Git 리포지토리(A 먼저, 끝나면 B)**만 처리합니다. 하지만, kubectl은 한 번에 7개까지 명령을 실행할 수 있으며, 따라서 배포 자체는 병렬로 빠르게 진행될 수 있습니다.
 
 
-위 옵션은 운영환경에 맞게 설정을 하셔야합니다. 
+위 옵션은 운영환경에 맞게 설정을 하셔야합니다.
 
 참고
 - https://argo-cd.readthedocs.io/en/release-2.2/operator-manual/server-commands/argocd-repo-server/
 - https://argo-cd.readthedocs.io/en/stable/operator-manual/argocd-cmd-params-cm-yaml/
 - https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/
+
+
+ArgoCD에서 설정할 수 있는 param cm을 확인할 수 있는 공식문서 첨부합니다.
+https://argo-cd.readthedocs.io/en/latest/operator-manual/server-commands/additional-configuration-method/

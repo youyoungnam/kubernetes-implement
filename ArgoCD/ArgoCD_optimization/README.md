@@ -83,7 +83,9 @@ ArgoCD Gitops의 기본적인 원리를 간단하게 설명하겠습니다. Git 
 ArgoCD는 이 상태를 지속적으로 관찰하며 현재 클러스터에 배포된 애플리케이션 상태와 git의 상태를 비교하여 다르면 Git의 상태에 맞게 배포합니다. 
 
 reposerver.parallelism.limit 옵션은 Git 저장소 동기화 순서를 제어합니다.
+
 reposerver.kubectl.parallelism.limit: Kubernetes 리소스 병렬 배포 제어합니다.
+
 reposerver.repo.cache.expiration: Git 저장소 캐시 만료 시간 설정합니다. 
 
 그렇다면 reposerver.repo.cache.expiration 어떤역할을 할까요? Git의 저장소를 매번 다운로드 하지않습니다. 변경된 부분만 빠르게 배포합니다. 

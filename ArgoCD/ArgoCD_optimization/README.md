@@ -31,9 +31,10 @@
 
 
 ### pull 방식에서 push 방식으로 변경 
-- ArgoCD는 default로 pull 방식을 통해서 매 3분마다 application manifest를 체크해서 변경사항을 체크합니다. 
-- 단일 Application update될 때마다 전체 레포에 대한 캐시가 무효화가 됩니다. 
-- 변경된 Application만 Webhook 트리거를 통해 argocd에게 전달을 하고 동기화를 진행할 수 있도록 했습니다. 
+- ArgoCD는 기본적으로 Pull 방식을 사용하여 매 3분마다 Git 저장소를 체크하고, 변경 사항이 있으면 동기화를 수행합니다. 그러나 단일 Application이 업데이트될 때마다 전체 레포지토리 캐시가 무효화되어 비효율적인 동작이 발생할 수 있습니다.
+- 이를 개선하기 위해, Bitbucket Webhook을 활용하여 변경된 Application만 ArgoCD에 알리고, 해당 Application만 동기화하는 Push 방식을 적용하였습니다.
+
+
 
 
 ```shell
@@ -110,7 +111,6 @@ Health Status:      Healthy
 
 GROUP  KIND        NAMESPACE  NAME                     STATUS  HEALTH   HOOK  MESSAGE
        ConfigMap   default        remote-app-config   Synced                 configmap/example-remote-app-config unchanged
-       ConfigMap   default        example-remote-app  Synced                 configmap/example-remote-app configured
        Service     default        example-remote-app  Synced  Healthy        service/example-remote-app unchanged
 apps   Deployment  default        example-remote-app  Synced  Healthy        deployment.apps/example-remote-app configured
 ```

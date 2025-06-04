@@ -34,7 +34,7 @@ Reloader를 간단히 설명드리자면, Reloader는 Kubernetes에서 ConfigMap
 ### 아키텍처 설명
 ![Configmap-GitOps](img.png)
 
-글로만 보면 다소 이해가 어려울 수 있기 때문에, 아래 그림을 보면서 다시 설명드리겠습니다.
+글로만 보면 다소 이해가 어려울 수 있기 때문에, 그림을 보면서 다시 설명드리겠습니다.
 저희는 먼저 ConfigMap을 별도의 Git 저장소로 분리했고, Argo CD가 해당 저장소를 바라보도록 설정했습니다.
 그리고 Reloader가 클러스터 내 ConfigMap 리소스를 watch하도록 구성했으며,
 이후에는 ConfigMap 값에 변경이 생기면, 이를 참조하고 있는 리소스를 자동으로 rollout restart하도록 설정했습니다.

@@ -64,9 +64,9 @@ Kubernetes make me interesting
 
 ## ArgoCD
 - [ArgoCD_optimization](https://github.com/youyoungnam/kubernetes-implement/tree/main/ArgoCD/ArgoCD_optimization)
-
+- [ArgoCD_Configmap_GitOps](https://github.com/youyoungnam/kubernetes-implement/tree/main/ArgoCD/ArgoCD_GitOps_reload)
 ## ETC
 - [etc](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc)
   - docker and kubernetes 팁 등등 configmap volume mounts
 - [pattern](https://github.com/youyoungnam/kubernetes-implement/tree/main/pattern)
-- [core-dns](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc/core-dns)
+- [core-dns](https://github.com/youyoungnam/kubernetes-implement/tree/main/etc/core_dns)

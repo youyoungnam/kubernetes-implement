@@ -41,6 +41,109 @@ Reloader를 간단히 설명드리자면, Reloader는 Kubernetes에서 ConfigMap
 
 
 
+### 구성방법
+
+```shell
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: example
+resources:
+ - example-service-cm.yaml
+ - example2-service-cm.yaml
+ - example3-service-cm.yaml
+```
+example 네임스페이스에서 사용되는 ConfigMap들을 Kustomization으로 관리할 수 있도록 설정합니다.
+
+
+
+```shell
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-env
+  namespace: example
+  annotations:
+    reloader.stakater.com/match: "true"
+data:
+ TEST: "A"
+```
+ConfigMap에 reloader.stakater.com/match: "true" 어노테이션을 추가하여, Stakater Reloader가 이 ConfigMap의 변경을 감지할 수 있도록 합니다.
+
+```shell
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: example-configmap
+  namespace: argo
+  annotations:
+    argocd.argoproj.io/manifest-generate-paths: .
+spec:
+  project: gitops-cm
+  destination:
+    namespace: example
+    server: https://kubernetes.default.svc
+  source:
+    path: config/overlays/dev
+    repoURL: https://configmap-gitops.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+```
+ArgoCD에서 ConfigMap 리소스를 관리할 수 있도록 kustomize 경로를 지정하여 자동 동기화가 가능하게 구성합니다.
+
+
+
+```shell
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-collector
+  annotations:
+    reloader.stakater.com/search: "true"
+```
+해당 Deployment가 참조 중인 ConfigMap 변경을 감지할 수 있도록 reloader.stakater.com/search: "true" 어노테이션을 추가합니다.
+
+### 흐름도
+
+```shell
+[Developer]
+    |
+    v
+[Git Push - ConfigMap 변경]
+    |
+    v
+[ArgoCD]
+  (Auto Sync)
+    |
+    v
+[Kustomize]
+  (Apply ConfigMap)
+    |
+    v
++---------------------------+
+|    ConfigMap (annotated) |
++---------------------------+
+             |
+             |      +-----------------------------+
+             |----> | Deployment (annotated too)  |
+             |      +-----------------------------+
+             |
+             v
++---------------------------+
+|   Stakater Reloader       |
+|   (감지 후 자동 재시작)  |
++---------------------------+
+             |
+             v
++---------------------------+
+|       Pod 재시작         |
++---------------------------+
+
+```
+
+
+
 ### 결론
 이번 구조 개선을 통해 ConfigMap 변경 작업이 더 이상 번거로운 수작업이 아닌, GitOps 기반으로 자동화되었습니다. 비록 작은 구조적 변화였지만, 개발자와 운영자 모두의 부담을 크게 줄일 수 있었고, GitOps의 진정한 장점을 팀원들과 함께 체감할 수 있는 계기가 되었습니다. 앞으로도 이런 작지만 실용적인 개선을 꾸준히 이어가 보려 합니다.
 

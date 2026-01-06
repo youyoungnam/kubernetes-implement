@@ -258,7 +258,7 @@ spec:
     - namePattern: "example-app"
       images:
         - alias: "auth"
-          imageName: "nexus.example.com:55000/dev/exampleapp"
+          imageName: "example.nexus.com:55000/dev/exampleapp"
           commonUpdateSettings:
             # 태그 필터링: dev-로 시작하는 태그만 허용
             allowTags: "regexp:^dev-.*"

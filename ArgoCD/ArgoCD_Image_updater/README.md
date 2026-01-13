@@ -327,3 +327,42 @@ kustomize: 업데이트 방식이 Kustomize임을 명시합니다.
 핵심 해석: 앞서 설명해 드린 대로, **Argo CD Application(example-app)에 설정된 소스 경로(source.path)**를 기준으로 **현재 디렉토리(.)**에 있는 kustomization.yaml을 수정하라는 뜻입니다.
 
 즉, ArgoCD Application source.path가 overlays/dev/라면, 최종 수정 파일은 repo/overlays/dev/kustomization.yaml이 됩니다.
+
+
+
+
+## 결과
+
+CI/CD Deployment Flow
+
+ArgoCD Image Updater를 도입하여 배포 프로세스를 자동화하고 Jenkins 파이프라인을 경량화했습니다.
+
+### Pipeline Evolution
+
+#### 1. Before (Jenkins Monolith)
+Jenkins가 빌드와 인프라 코드(Manifest) 업데이트를 모두 수행하는 구조였습니다.
+
+~~~mermaid
+flowchart LR
+    A[Git Checkout] --> B[Docker Build]
+    B --> C[Registry Push]
+    C --> D[GitOps Checkout]
+    D --> E[Update Tag]
+    E --> F[Git Push]
+    
+    style D fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+    style F fill:#f9f,stroke:#333,stroke-width:2px
+~~~
+
+#### 2. After (GitOps Automation)
+Jenkins는 이미지만 레지스트리에 등록하며, 이후 배포는 ArgoCD가 감지하여 수행합니다.
+
+~~~mermaid
+flowchart LR
+    A[Git Checkout] --> B[Docker Build]
+    B --> C[Registry Push]
+    C -.->|Auto Detect & Deploy| D[ArgoCD Image Updater]
+    
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+~~~
